@@ -8,6 +8,7 @@ from scrapyuniversal.loaders import *
 class ChinaSpider(CrawlSpider):
     name = 'china'
     allowed_domains = ['tech.china.com']
+    # 根据目标页面做自定义设置
     start_urls = ['http://tech.china.com/articles/']
     
     rules = (

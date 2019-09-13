@@ -7,6 +7,7 @@
 
 from scrapy import Field, Item
 
+
 class NewsItem(Item):
     title = Field()
     text = Field()

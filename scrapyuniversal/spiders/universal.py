@@ -7,9 +7,10 @@ from scrapyuniversal.utils import get_config
 from scrapyuniversal import urls
 from scrapyuniversal.rules import rules
 
+
 class UniversalSpider(CrawlSpider):
     name = 'universal'
-    
+
     def __init__(self, name, *args, **kwargs):
         config = get_config(name)
         self.config = config
@@ -22,7 +23,7 @@ class UniversalSpider(CrawlSpider):
                 self.start_urls = list(eval('urls.' + start_urls.get('method'))(*start_urls.get('args', [])))
         self.allowed_domains = config.get('allowed_domains')
         super(UniversalSpider, self).__init__(*args, **kwargs)
-    
+
     def parse_item(self, response):
         item = self.config.get('item')
         if item:
