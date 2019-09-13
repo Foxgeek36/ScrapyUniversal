@@ -9,9 +9,16 @@ from scrapyuniversal.rules import rules
 
 
 class UniversalSpider(CrawlSpider):
+    '''
+    通用的spider/ 实现变量的通用配置提取 +--
+    '''
+
     name = 'universal'
 
     def __init__(self, name, *args, **kwargs):
+        '''
+        对通用模块做初始化配置
+        '''
         config = get_config(name)
         self.config = config
         self.rules = rules.get(config.get('rules'))
