@@ -4,6 +4,10 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapyuniversal.items import *
 from scrapyuniversal.loaders import *
 
+'''
+[state]使用通用爬虫标准模块爬取->https://tech.china.com/articles/
+'''
+
 
 class ChinaSpider(CrawlSpider):
     name = 'china'
@@ -12,11 +16,15 @@ class ChinaSpider(CrawlSpider):
     start_urls = ['http://tech.china.com/articles/']
     
     rules = (
-        Rule(LinkExtractor(allow='article\/.*\.html', restrict_xpaths='//div[@id="left_side"]//div[@class="con_item"]'),
-             callback='parse_item'),
+        # 获取当前所在列表页数据
+        Rule(LinkExtractor(allow='article\/.*\.html',
+                           restrict_xpaths='//div[@id="left_side"]//div[@class="con_item"]'),
+                           callback='parse_item'),
+        # 获取'下一页'列表页
         Rule(LinkExtractor(restrict_xpaths='//div[@id="pageStyle"]//a[contains(., "下一页")]'))
     )
-    
+
+    # 此处的方法区别于原有的 parse()
     def parse_item(self, response):
         loader = ChinaLoader(item=NewsItem(), response=response)
         loader.add_xpath('title', '//h1[@id="chan_newsTitle"]/text()')

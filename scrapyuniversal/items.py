@@ -14,4 +14,4 @@ class NewsItem(Item):
     datetime = Field()
     source = Field()
     url = Field()
-    website = Field()
+    website = Field()  # 站点名称

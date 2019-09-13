@@ -22,6 +22,7 @@ class UniversalSpider(CrawlSpider):
             elif start_urls.get('type') == 'dynamic':
                 self.start_urls = list(eval('urls.' + start_urls.get('method'))(*start_urls.get('args', [])))
         self.allowed_domains = config.get('allowed_domains')
+        # attention +--
         super(UniversalSpider, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
