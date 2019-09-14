@@ -8,7 +8,7 @@ from scrapy.crawler import CrawlerProcess
 
 def run():
     '''
-    为入口文件,作用是启动Spider/ 添加该文件之后,项目的启动命令为python run.py china
+    为入口文件,作用是读取命令行参数->启动Spider/ 添加该文件之后,项目的启动命令为python run.py china
     '''
     name = sys.argv[1]  # 获取cmd命令行中参数/ 该name对应的即为spider的名称
     custom_settings = get_config(name)

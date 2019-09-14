@@ -11,6 +11,7 @@ from scrapyuniversal.rules import rules
 class UniversalSpider(CrawlSpider):
     '''
     通用的spider/ 实现变量的通用配置提取 +--
+    - scrapy genspider -t crawl universal universal
     '''
 
     name = 'universal'
@@ -23,6 +24,7 @@ class UniversalSpider(CrawlSpider):
         self.config = config
         self.rules = rules.get(config.get('rules'))
         start_urls = config.get('start_urls')
+        # attention +--
         if start_urls:
             if start_urls.get('type') == 'static':
                 self.start_urls = start_urls.get('value')
